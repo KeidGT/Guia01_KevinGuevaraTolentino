@@ -11,6 +11,7 @@ package com.sv.udb.beans;
  */
 public class demo {
     private String nombre;
+    private int cantidad;
 
     public demo(){
         System.err.println("HOLA MAMI");
