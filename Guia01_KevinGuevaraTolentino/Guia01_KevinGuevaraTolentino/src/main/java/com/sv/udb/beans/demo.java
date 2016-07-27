@@ -12,6 +12,9 @@ package com.sv.udb.beans;
 public class demo {
     private String nombre;
 
+    public demo(){
+        System.err.println("HOLA MAMI");
+    }
     public demo(String nombre) {
         this.nombre = nombre;
     }
