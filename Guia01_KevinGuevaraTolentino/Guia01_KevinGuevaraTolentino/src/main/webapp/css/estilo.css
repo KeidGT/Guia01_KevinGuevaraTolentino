@@ -13,23 +13,67 @@ body{
     font-size: 12pt;
 }
 #contenedor{
-	width: 98%;
-	margin: 0 auto;
-        margin: 1%;
-	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
-	padding: 1%;
-        padding-left: 4%;
-        padding-right: 4%;
-        padding-top: 1%;
-	background: #ffffff;
+    width: 98%;
+    margin: 0 auto;
+    margin: 1%;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+    padding: 1%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 1%;
+    background: #ffffff;
+    overflow: hidden;
 }
-#formulario{
-    width: 38%;
+#menu{
+    width: 20%;
     display: inline-block;
     vertical-align: top;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-shadow: 2px 2px 0.1px 0px rgba(0, 0, 0, 0.4),
+     inset 2px 2px 0px 0px rgba(255, 255, 255, 0.3);
+}
+.menu-item{
+ /*border: 1px solid rgba(0, 0, 0, 0.41);*/
+ background: rgba(255, 255, 255, 0.36);
+ margin-bottom: 5px;
+ -webkit-transition: box-shadow 1s, border 1s;
+margin: 0px;
+ height: 50px;
+ 
+}
+.menu-link{
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    padding-top: 15px;
+    padding-left: 10px;
+    -webkit-transition: box-shadow 0.5s, border 1s;
+    
+}
+.menu-item:hover{
+    box-shadow: 2px 0px 0.1px 0px rgba(0, 0, 0, 0.4),
+        -2px 0px 0.1px 0px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.menu-item:last-child:hover{
+    
+    box-shadow: 2px 2px 0.1px 0px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.menu-item:last-child{
+    border: none;
+}
+.menu-item:first-child:hover{
+    box-shadow: -2px -2px 0.1px 0px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 #registros{
-    width: 58%;
+    width: 76%;
     display: inline-block;
     margin-left: 3%;
     vertical-align: top;
@@ -128,7 +172,7 @@ input{
     }
 }
 @media screen and (max-width:840px) {
-    #formulario{
+    #menu{
         width: 100%;
     }
     #registros{

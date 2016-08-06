@@ -5,27 +5,15 @@
  */
 package com.sv.udb.beans;
 
+import com.sv.udb.reportes.Reporte;
+
 /**
  *
  * @author Laboratorio
  */
 public class demo {
-    private String nombre;
-    private int cantidad;
-
-    public demo(){
-        System.err.println("HOLA MAMI");
-    }
-    public demo(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
+   Reporte r = new Reporte();
+   demo(){
+       r.reporteVisitas(1);
+   }
 }

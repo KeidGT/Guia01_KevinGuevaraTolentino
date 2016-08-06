@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48d947b5-5fc0-4a84-806e-53b6e21698d3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idUnidad" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select unid_orga.NOMB_UNID_ORGA as unidad, fech_hora_entr_visi as entradaVisita, fech_hora_sali_visi as salidaVisita, concat(nomb_pers, ' ', apel_pers) as persona from visi inner join pers on visi.codi_pers = pers.codi_pers inner join unid_orga  on unid_orga.codi_unid_orga = visi.codi_unid_orga_visi where visi.codi_unid_orga_visi = $P{idUnidad}]]>
+	</queryString>
+	<field name="unidad" class="java.lang.String"/>
+	<field name="entradaVisita" class="java.sql.Timestamp"/>
+	<field name="salidaVisita" class="java.sql.Timestamp"/>
+	<field name="persona" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="52" y="23" width="448" height="56" uuid="1eef90aa-40fc-477e-b0a0-41706788c3b5"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[VISITAS A UNIDADES ORGANIZATIVAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="232" y="0" width="100" height="20" uuid="8e569e37-cbd6-45f6-8cab-0b4efe40218f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="0" width="100" height="20" uuid="f9398f63-2a5c-4535-95e7-e92a1db929ae"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Persona Designada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="2" width="100" height="20" uuid="77536c1d-b0a0-4d36-9216-f12759449b7f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Llegada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="2" width="100" height="20" uuid="1fc28978-f428-48b6-9d4a-39a13bddee32"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora Salida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="7" width="100" height="20" uuid="f1b24ed7-4608-4386-a7e2-c205cc236688"/>
+				<textFieldExpression><![CDATA[$F{persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="7" width="100" height="20" uuid="cc842718-96ee-4064-b1e7-4668664e6553"/>
+				<textFieldExpression><![CDATA[$F{entradaVisita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="7" width="100" height="20" uuid="e9fe3070-037f-46ba-9aaf-a25b066774a8"/>
+				<textFieldExpression><![CDATA[$F{salidaVisita}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
