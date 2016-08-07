@@ -45,10 +45,7 @@ public class UNID_ORGAServlet extends HttpServlet {
             String CRUD = request.getParameter("cursBoton");
             if(CRUD.equals("Generar Reporte"))
             {
-                int id = Integer.parseInt(request.getParameter("radioButton")==null?"0":request.getParameter("radioButton"));
-                request.setAttribute("estado", "Petición Realizada: "+id);
-                request.getSession().setAttribute("id", id); 
-                //response.sendRedirect("/prueba.jsp"); 
+                //NADA 
                 
             }
         } 

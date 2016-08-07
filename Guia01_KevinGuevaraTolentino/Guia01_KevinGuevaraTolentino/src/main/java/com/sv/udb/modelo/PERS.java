@@ -9,24 +9,24 @@ package com.sv.udb.modelo;
  *
  * @author Kevin
  */
-public class UNID_ORGA {
-    private int codigo;
+public class PERS {
+    private int id;
     private String nombre;
 
-    public UNID_ORGA() {
+    public PERS() {
     }
 
-    public UNID_ORGA(int codigo, String nombre) {
-        this.codigo = codigo;
+    public PERS(int id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -37,10 +37,5 @@ public class UNID_ORGA {
         this.nombre = nombre;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
-    }
-    
     
 }

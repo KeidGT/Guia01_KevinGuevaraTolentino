@@ -6,11 +6,14 @@
 <%@ page import="java.io.*" %> 
 <%
 	try{
+            //radioButton
+            //recolectando posibles parámetros
+            int id = Integer.parseInt(request.getParameter("radioButton"));
             Connection cn = new Conexion().getConn(); 
-            File reportFile = new File(application.getRealPath("reports/Reporte1.jasper"));
+            File reportFile = new File(application.getRealPath("reports/Reporte2.jasper"));
             System.out.println(reportFile.getPath());
             Map parameters = new HashMap();
-            parameters.put("idUnidad",1);
+            parameters.put("idPersona",id);
             byte[] bytes=JasperRunManager.runReportToPdf(reportFile.getPath(),parameters,cn);
             response.setContentType("application/pdf");
             response.setContentLength(bytes.length);

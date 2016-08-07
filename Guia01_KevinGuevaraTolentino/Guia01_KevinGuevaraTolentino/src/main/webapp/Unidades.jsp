@@ -3,7 +3,7 @@
     Created on : 26-abr-2016, 15:43:28
     Author     : Kevin
 --%>
-<%@page import="com.sv.udb.controlador.UNID_ORGACtrl"%>
+<%@page import="com.sv.udb.controlador.PERSCtrl"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -45,13 +45,33 @@
                 
             </div>
             <div id="registros">
-                <form method="POST" action = "Reporte1.jsp" target="_blank">
-                <jsp:useBean id="frijol" class="com.sv.udb.controlador.UNID_ORGACtrl" scope="page"/>
+                <form method="POST" action = "Reporte3.jsp" target="_blank">
+                <div class="row">
+                    <div class="input-field col s12"  >
+                        <select name="cmbUnidad" id="cmbUnidad" onchange="probar()">
+                            <option name="idUnidad" value="" disabled selected>Seleccione una Unidad</option>
+                            <jsp:useBean id="frijolito" class="com.sv.udb.controlador.UNID_ORGACtrl" scope="page"/>
+                            <c:forEach items="${frijolito.consTodo()}" var="fila">
+                                <option value="<c:out value="${fila.codigo}"></c:out>" ${fila.codigo == selectedPieza  ? 'selected' : ' '}><c:out value="${fila.nombre}" ></c:out></option>
+                            </c:forEach>
+                        </select>
+                        <label>Unidades</label>
+                  </div>
+                </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input  type="text" class="validate" id="txtBuscar" onkeyup="buscarRegistro('txtBuscar','tbData')">
-                    <label for="disabled">Buscar Registro</label>
+                        <label>Fecha Inicial</label><br><br>
+                        <input type="date" class="" id="dt1" name="dt1" onchange="probar()"/>
+                        
                     </div>
+                    <div class="input-field col s6" >
+                        <label>Fecha Final</label><br><br>
+                        <input type="date" class="" id="dt2" name="dt2" onchange="probar()"/>
+                        
+                    </div>
+                </div>
+                            
+                <div class="row">
                     <div class="input-field col s4">
                         <input class="btn waves-effect waves-light disabled" disabled id="btnReporte" style="width: 100%; padding: 0px;" type="submit" name="cursBoton" value="Generar Reporte"/>
                     </div>
@@ -59,27 +79,8 @@
                         <a class="waves-effect waves-light btn modal-trigger" href="#modal1"><span class="icon-lifebuoy"></span></a>
                     </div>
                 </div>    
-                    
-                    <table class="centered" style="color: #fff; background: #26A69A;">
-                        <thead>
-                            <tr>
-                                <th>Unidades Organizativas:</th>
-                                <th style="display: none;"><span class="icon-appleinc"></span></th>
-                            </tr>
-                        </thead>
-                    </table>
-                
-                <div id="tabla">
-                    
-                    <% request.setAttribute( "idDisplay", new UNID_ORGACtrl().consTodo() ); %>
-                    <display:table class="bordered highlight centered" id="tbData" name="idDisplay">
-                        <display:column property="nombre" title="Unidad Organizativa" sortable="true"/>
-                        <display:column  title="Seleccionar" sortable="true">
-                            <input class="with-gap radioButton" type="radio" id="test${tbData.codigo}" value="${tbData.codigo}" name="radioButton" />
-                            <label for="test${tbData.codigo}"></labe>
-                        </display:column>
-                    </display:table>
-                </div>
+
+                                
                     <input class="btn waves-effect waves-light left" style="margin-top: 14px; display: none;" type="Submit" name="cursBoton" value="Consultar" id="btnConsultar" />
             </form>
             
@@ -100,9 +101,16 @@
     <script src="js/dinamico.js" charset="utf-8"></script>
 
     <script>
+        
+        $('select').material_select();
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+          });
         $(document).ready(function(){
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
+            
           });
         var btn =document.getElementById("btnReporte");
         function resetForm(){
@@ -128,6 +136,20 @@
                 btn.removeAttribute("disabled");
                 event.preventDefault();
             });
+        }
+        function probar(){
+            var dt1 = document.getElementById("dt1").value;
+            var dt2 = document.getElementById("dt2").value;
+            var cmbUnidad = document.getElementById("cmbUnidad").value;
+            if((dt1 == null || dt1.trim() =="") || (dt2 == null || dt2.trim() =="") || (cmbUnidad == null || cmbUnidad.trim() =="")){
+                btn.parentNode.classList.add("disabled");
+                btn.setAttribute("disabled", "true");
+               
+            }else{
+                btn.parentNode.classList.remove("disabled");
+                btn.removeAttribute("disabled");
+            }
+           // alert("dt1: "+dt1+", dt2: "+dt2+", cmb: "+cmbUnidad);
         }
         $(document).ready(function() {
             //OCULTAMOS LA ULTIMA COLUMNA DE LA TABLA DONDE SE MANTIENE EL RADIO BUTTON

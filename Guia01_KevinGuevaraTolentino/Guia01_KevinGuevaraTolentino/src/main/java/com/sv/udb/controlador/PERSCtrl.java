@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package com.sv.udb.controlador;
-import com.sv.udb.modelo.UNID_ORGA;
+
+import com.sv.udb.modelo.PERS;
 import com.sv.udb.recursos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,23 +13,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *
  * @author Kevin
  */
-public class UNID_ORGACtrl {
-    public List<UNID_ORGA> consTodo()
+public class PERSCtrl {
+    public List<PERS> consTodo()
     {
-       List<UNID_ORGA> resp = new ArrayList();
+       List<PERS> resp = new ArrayList();
        Connection cn = new Conexion().getConn();
         try
         {
-            PreparedStatement cmd = cn.prepareStatement("select * from UNID_ORGA");
+            PreparedStatement cmd = cn.prepareStatement("select * from PERS");
             ResultSet rs = cmd.executeQuery();
                 
             while(rs.next())
             {   
-                resp.add(new UNID_ORGA(rs.getInt(1), rs.getString(2)));
+                resp.add(new PERS(rs.getInt(1), rs.getString(2)+" "+rs.getString(3)));
                
             }
              

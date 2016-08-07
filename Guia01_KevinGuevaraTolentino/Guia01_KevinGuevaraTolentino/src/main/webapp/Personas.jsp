@@ -3,7 +3,7 @@
     Created on : 26-abr-2016, 15:43:28
     Author     : Kevin
 --%>
-<%@page import="com.sv.udb.controlador.UNID_ORGACtrl"%>
+<%@page import="com.sv.udb.controlador.PERSCtrl"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -45,8 +45,8 @@
                 
             </div>
             <div id="registros">
-                <form method="POST" action = "Reporte1.jsp" target="_blank">
-                <jsp:useBean id="frijol" class="com.sv.udb.controlador.UNID_ORGACtrl" scope="page"/>
+                <form method="POST" action = "Reporte2.jsp" target="_blank">
+                <jsp:useBean id="frijol" class="com.sv.udb.controlador.PERSCtrl" scope="page"/>
                 <div class="row">
                     <div class="input-field col s6">
                         <input  type="text" class="validate" id="txtBuscar" onkeyup="buscarRegistro('txtBuscar','tbData')">
@@ -63,7 +63,7 @@
                     <table class="centered" style="color: #fff; background: #26A69A;">
                         <thead>
                             <tr>
-                                <th>Unidades Organizativas:</th>
+                                <th>Personas</th>
                                 <th style="display: none;"><span class="icon-appleinc"></span></th>
                             </tr>
                         </thead>
@@ -71,12 +71,12 @@
                 
                 <div id="tabla">
                     
-                    <% request.setAttribute( "idDisplay", new UNID_ORGACtrl().consTodo() ); %>
+                    <% request.setAttribute( "idDisplay", new PERSCtrl().consTodo() ); %>
                     <display:table class="bordered highlight centered" id="tbData" name="idDisplay">
-                        <display:column property="nombre" title="Unidad Organizativa" sortable="true"/>
+                        <display:column property="nombre" title="Personas" sortable="true"/>
                         <display:column  title="Seleccionar" sortable="true">
-                            <input class="with-gap radioButton" type="radio" id="test${tbData.codigo}" value="${tbData.codigo}" name="radioButton" />
-                            <label for="test${tbData.codigo}"></labe>
+                            <input class="with-gap radioButton" type="radio" id="test${tbData.id}" value="${tbData.id}" name="radioButton" />
+                            <label for="test${tbData.id}"></labe>
                         </display:column>
                     </display:table>
                 </div>
@@ -100,9 +100,11 @@
     <script src="js/dinamico.js" charset="utf-8"></script>
 
     <script>
+        $('select').material_select();
         $(document).ready(function(){
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
+            $('select').material_select();
           });
         var btn =document.getElementById("btnReporte");
         function resetForm(){
