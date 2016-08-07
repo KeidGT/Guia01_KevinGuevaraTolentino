@@ -8,12 +8,9 @@ package com.sv.udb.reportes;
 import com.sv.udb.recursos.Conexion;
 import java.util.HashMap;
 import java.util.Map;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -21,7 +18,9 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class Reporte {
     public void reporteVisitas(int unidad){
-        /*try {
+        /*          SWING
+        
+        try {
           JasperReport reporte = (JasperReport) JRLoader.loadObject("Visitas.jasper");
           Map parametro = new HashMap();
           parametro.put("codigoUnidadOrganizativa", unidad);
@@ -33,6 +32,15 @@ public class Reporte {
         } catch (JRException e) {
             System.out.println("ERROR REPORTE VISITAS: " +e);
         }*/
-        
+/*      try{
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("reporte1.jasper");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parameters, cn);
+            JRExporter exporter = new JRPdfExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT,jasperPrint); 
+            exporter.setParameter(JRExporterParameter.OUTPUT_FILE,new java.io.File("reportePDF.pdf"));
+            exporter.exportReport();
+        }catch(Exception e){
+            System.out.println("ERROR: "+e.getMessage());
+        }*/
     }
 }
